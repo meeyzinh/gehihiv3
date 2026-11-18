@@ -1,0 +1,14 @@
+key,type,encoding,value
+wifi,namespace,,
+ssid,data,string,Tang5
+password,data,string,88888888
+channel,data,u8,10
+ota_url,data,string,http://192.168.0.107:8000/xiaozhi/ota/
+websocket,namespace,,
+url,data,string,ws://192.168.0.107:8000/ws/device
+token,data,string,gmbot-token-local
+version,data,u32,1
+audio,namespace,,
+output_volume,data,u32,100
+board,namespace,,
+uuid,data,string,19b6bcfe-2425-4f66-8fcf-ffe05679ef8e

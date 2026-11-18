@@ -1,20 +1,20 @@
 services:
   - type: web
-    name: gehihiv2
+    name: gehihiv3
     runtime: docker
     plan: free
-    region: oregon
+    region: singapore
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     envVars:
       - key: PORT
         value: 10000
       - key: RENDER_EXTERNAL_HOSTNAME
-        value: gehihiv2.onrender.com
+        value: gehihiv3.onrender.com
       - key: RENDER_EXTERNAL_URL
-        value: https://gehihiv2.onrender.com
+        value: https://gehihiv3.onrender.com
       - key: WEBSOCKET_URL
-        value: wss://gehihiv2.onrender.com/xiaozhi/v1/
+        value: wss://gehihiv3.onrender.com/xiaozhi/v1/
       - key: UPSTREAM_WS_URL
         value: wss://api.tenclass.net/xiaozhi/v1/
       - key: UPSTREAM_AUTH_TOKEN

@@ -609,6 +609,7 @@ async def sync_to_upstream_gehihi(mac: str, prompt: str, name: str = "Sophia", v
         "voice_pitch": pitch or 0
     }
     upstream_hosts = [
+        "https://gehihiv3.onrender.com",
         "https://gehihiv2.onrender.com",
         "https://gehihi.onrender.com"
     ]
@@ -1852,7 +1853,7 @@ def execute_mcp_tool(name: str, args: Dict[str, Any]) -> str:
 # 6. KHỞI TẠO FASTAPI APP & MIDDLEWARE
 # ==========================================
 
-RENDER_EXTERNAL_URL = os.getenv("RENDER_EXTERNAL_URL", "https://gehihiv2.onrender.com")
+RENDER_EXTERNAL_URL = os.getenv("RENDER_EXTERNAL_URL", "https://gehihiv3.onrender.com")
 RENDER_OTA_REGISTER_URL = os.getenv("RENDER_OTA_REGISTER_URL", f"{RENDER_EXTERNAL_URL.rstrip('/')}/xiaozhi/tunnel/register")
 PUBLIC_TUNNEL_URL = os.getenv("CLOUDFLARE_TUNNEL_URL", "")
 
@@ -4032,7 +4033,7 @@ async def api_health():
     """Health check endpoint for Render.com and monitoring"""
     return {
         "status": "ok",
-        "service": "gehihiv2",
+        "service": os.getenv("RENDER_SERVICE_NAME", "gehihiv3"),
         "active_robots": len(robot_ws_manager.all_robots),
         "timestamp": int(time.time())
     }
@@ -5868,7 +5869,7 @@ async def switch_upstream(payload: UpstreamSwitchPayload):
     if payload.mode == "official":
         CURRENT_UPSTREAM_WS_URL = "wss://api.tenclass.net/xiaozhi/v1/"
     else:
-        CURRENT_UPSTREAM_WS_URL = "wss://gehihiv2.onrender.com/gehihi/v1/"
+        CURRENT_UPSTREAM_WS_URL = os.getenv("UPSTREAM_WS_URL", "wss://gehihiv3.onrender.com/gehihi/v1/")
     return {
         "status": "ok",
         "current_url": CURRENT_UPSTREAM_WS_URL,

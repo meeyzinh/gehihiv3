@@ -6,14 +6,15 @@ Cơ chế: Render miễn phí sẽ tắt (sleep) sau 15 phút nếu không có r
 Script này gửi HTTP GET request mỗi 10 phút để server không bao giờ bị sleep!
 """
 
+import os
 import sys
 import time
 import datetime
 import urllib.request
 import urllib.error
 
-TARGET_URL = "https://gehihiv2.onrender.com/api/health"
-FALLBACK_URL = "https://gehihiv2.onrender.com/"
+TARGET_URL = os.getenv("RENDER_HEALTH_URL", "https://gehihiv3.onrender.com/api/health")
+FALLBACK_URL = os.getenv("RENDER_EXTERNAL_URL", "https://gehihiv3.onrender.com/")
 PING_INTERVAL_SECONDS = 600  # 10 phút (Render sleep sau 15 phút)
 
 def ping_server(url: str, timeout: int = 30) -> tuple[int, float, str]:
